@@ -1,0 +1,12 @@
+(tests 
+  (names
+    bCHARMDictionaryTest
+    bCHDisassembleARMInstructionTest
+    bCHDisassembleThumbInstructionTest
+    bCHThumbITSequenceTest
+    bCHARMJumptableTest
+    bCHARMConditionalExprTest
+    bCHTranslateARMToCHIFTest
+    bCHARMAssemblyFunctionTest
+    bCHFnARMDictionaryTest)
+  (libraries bchanalyze bchlib bchlibarm32 chlib chutil tbchlib tbchlibarm32 tchlib zarith))

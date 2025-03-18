@@ -1,0 +1,5 @@
+(library
+  (name chlib)
+  (libraries unix zarith)
+  (public_name codehawk.chlib)
+  (wrapped false))

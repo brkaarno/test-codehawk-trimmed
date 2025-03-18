@@ -1,0 +1,5 @@
+(library
+  (name tbchlibx86)
+  (libraries bchlib chlib chutil tchlib xprlib)
+  (public_name codehawk.tbchlibx86)
+  (wrapped false))

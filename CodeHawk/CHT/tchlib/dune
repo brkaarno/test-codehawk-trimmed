@@ -1,0 +1,5 @@
+(library
+  (name tchlib)
+  (libraries chlib chutil unix)
+  (public_name codehawk.tchlib)
+  (wrapped false))

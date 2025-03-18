@@ -1,0 +1,13 @@
+(executable
+  (name cCHXInspectSummaries)
+  (libraries cchlib chlib chutil)
+  (modules cCHXInspectSummaries)
+  (package exes)
+  (public_name inspectsummaries))
+
+(executable
+  (name cCHXCAnalyzer)
+  (libraries cchlib cchpre cchanalyze chlib chutil)
+  (modules cCHXCAnalyzer cCHVersion)
+  (package exes)
+  (public_name canalyzer))

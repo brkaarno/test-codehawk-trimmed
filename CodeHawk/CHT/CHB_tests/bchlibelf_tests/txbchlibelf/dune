@@ -1,0 +1,3 @@
+(tests 
+  (names bCHDwarfTest bCHELFDebugAbbrevSectionTest bCHELFDebugLocSectionTest)
+  (libraries bchlib bchlibelf chlib chutil tbchlibelf tchlib))

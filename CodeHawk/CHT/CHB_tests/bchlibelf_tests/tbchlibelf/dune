@@ -1,0 +1,5 @@
+(library
+  (name tbchlibelf)
+  (libraries bchlib bchlibelf tchlib)
+  (public_name codehawk.tbchlibelf)
+  (wrapped false))

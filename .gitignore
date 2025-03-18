@@ -1,0 +1,109 @@
+*.annot
+*.cmo
+*.cma
+*.cmi
+*.a
+*.o
+*.cmx
+*.cmxs
+*.cmxa
+
+# ocamlbuild working directory
+_build/
+
+# ocamlbuild targets
+*.byte
+*.native
+
+# MacOSX
+.DS_Store
+
+# Emacs backup files
+*.xml~
+*.md~
+*.ml~
+*.mli~
+*.sh~
+*.yaml~
+*.i~
+.gitignore~
+
+# binary analyzer executables
+CodeHawk/CHB/bchcmdline/chx86_analyze
+CodeHawk/CHB/bchcmdline/chx86_inspect_summaries
+CodeHawk/CHB/bchgui/chx86_gui
+CodeHawk/CHB/bchcil/parseFile
+
+# c analyzer executables
+CodeHawk/CHC/cchcmdline/canalyzer
+CodeHawk/CHC/cchcmdline/inspectsummaries
+CodeHawk/CHC/cchcil/parseFile
+CodeHawk/CHC/cchgui/chc_gui
+
+# java analyzer executables
+CodeHawk/CHJ/jchcmdline/chj_experiment
+CodeHawk/CHJ/jchcmdline/chj_inspect
+CodeHawk/CHJ/jchcmdline/chj_integrate
+CodeHawk/CHJ/jchcmdline/chj_native
+CodeHawk/CHJ/jchcmdline/chj_template
+
+CodeHawk/CHJ/jchmuse/chj_efeatures
+CodeHawk/CHJ/jchmuse/chj_features
+CodeHawk/CHJ/jchmuse/chj_invariants
+CodeHawk/CHJ/jchmuse/chj_patterns
+
+CodeHawk/CHJ/jchstac/chj_class_invariants
+CodeHawk/CHJ/jchstac/chj_initialize
+CodeHawk/CHJ/jchstac/chj_translate_class
+CodeHawk/CHJ/jchstac/chj_template
+
+CodeHawk/CHJ/jchstacgui/chj_gui
+CodeHawk/CHJ/jdksummaries/jdk.jar
+
+# unit test artifacts
+CodeHawk/CH_tests/CHB/testinputs/dnsmasq/dnsmasq.ch
+CodeHawk/CH_tests/CHB/testinputs/lighttpd/lighttpd.ch
+
+CodeHawk/CH_tests/CHB/bchlib/bCHApiParameterTest
+CodeHawk/CH_tests/CHB/bchlib/bCHDemanglerTest
+CodeHawk/CH_tests/CHB/bchlib/bCHDoublewordTest
+CodeHawk/CH_tests/CHB/bchlib/bCHFunctionInfoTest
+CodeHawk/CH_tests/CHB/bchlib/bCHImmediateTest
+CodeHawk/CH_tests/CHB/bchlib/bCHLocationTest
+
+# summaries
+cchsummaries.jar
+
+# oasis generated files
+setup.data
+setup.log
+
+# Merlin configuring file for Vim and Emacs
+.merlin
+
+# CH_extern artifacts
+CodeHawk/CH_extern/camlzip/dllcamlzip.so
+CodeHawk/CH_extern/extlib/extBytes.mli
+
+# cil build artefacts
+CodeHawk/CHC/cil-1.7.3-develop/META
+CodeHawk/CHC/cil-1.7.3-develop/lib/cil/
+CodeHawk/CHC/cil-1.7.3-develop/lib/perl5/App/Cilly.pm
+CodeHawk/CHC/cil-1.7.3-develop/lib/perl5/MYMETA.json
+CodeHawk/CHC/cil-1.7.3-develop/lib/perl5/MYMETA.yml
+CodeHawk/CHC/cil-1.7.3-develop/lib/perl5/Makefile
+CodeHawk/CHC/cil-1.7.3-develop/lib/perl5/blib/
+CodeHawk/CHC/cil-1.7.3-develop/lib/perl5/pm_to_blib
+CodeHawk/CHC/cil-1.7.3-develop/share/
+
+# CHB build artefact
+CodeHawk/CHB/bchcmdline/chx86_make_app_summary
+CodeHawk/CHB/bchcmdline/chx86_make_class_summary
+CodeHawk/CHB/bchcmdline/chx86_make_const_summary
+CodeHawk/CHB/bchcmdline/chx86_make_lib_summary
+CodeHawk/CHB/bchcmdline/chx86_make_structdef
+CodeHawk/CHB/bchsummaries/bchsummaries.jar
+
+# CodeHawk logging
+*.chlog
+*.ch_error_log

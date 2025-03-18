@@ -1,0 +1,5 @@
+(library
+  (name xprlib)
+  (libraries chlib chutil)
+  (public_name codehawk.xprlib)
+  (wrapped false))

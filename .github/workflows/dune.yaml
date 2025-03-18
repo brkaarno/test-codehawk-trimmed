@@ -1,0 +1,98 @@
+name: dune CI
+
+on: [pull_request, push]
+
+jobs:
+  build:
+    name: "Compile and test CodeHawk"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ocaml-compiler:
+          - "4.12.1"
+          - "4.13.1"
+          - "4.14.1"
+          - "5.0.0"
+          - "5.1.1"
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ocaml/setup-ocaml@v3
+      with:
+        ocaml-compiler: ${{ matrix.ocaml-compiler }}
+    - name: Install dependencies
+      run: |
+        opam install extlib camlzip zarith ocamlbuild odoc goblint-cil
+    - name: Build executables
+      run: eval $(opam env) && cd CodeHawk && dune build @install
+    - name: Build documentation
+      run: eval $(opam env) && cd CodeHawk && dune build @doc
+    - name: Run tests
+      run: eval $(opam env) && cd CodeHawk && dune test
+    - name: Prepare tar file for upload
+      run: tar -hcvf artifacts.tar CodeHawk/_build/install/default/bin/*
+    - name: Upload artifacts tar file
+      uses: actions/upload-artifact@v4
+      with:
+        name: artifacts-${{ matrix.ocaml-compiler }}
+        path: artifacts.tar
+  b_orchestration:
+    name: "Run CodeHawk-Binary tests"
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ocaml-compiler:
+          - "4.12.1"
+          - "4.13.1"
+          - "4.14.1"
+          - "5.0.0"
+          - "5.1.1"
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: static-analysis-engineering/CodeHawk-Binary
+    - name: Delete submitted prebuilts
+      run: rm -f chb/bin/binaries/linux/chx86_analyze
+    - name: Download artifacts tar
+      uses: actions/download-artifact@v4
+      with:
+        name: artifacts-${{ matrix.ocaml-compiler }}
+    - name: Extract artifacts
+      run: |
+        tar xvf artifacts.tar
+        mv CodeHawk/_build/install/default/bin/chx86_analyze chb/bin/binaries/linux/chx86_analyze
+    - name: Run binary analyzer tests
+      run: PYTHONPATH=$PWD chb/cmdline/chkx test runall
+  c_orchestration:
+    name: "Run CodeHawk-C tests"
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ocaml-compiler:
+          - "4.12.1"
+          - "4.13.1"
+          - "4.14.1"
+          - "5.0.0"
+          - "5.1.1"
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: static-analysis-engineering/CodeHawk-C
+    - name: Delete submitted prebuilts
+      run: |
+        rm -f chc/bin/linux/parseFile
+        rm -f chc/bin/linux/canalyzer
+    - name: Download artifacts tar
+      uses: actions/download-artifact@v4
+      with:
+        name: artifacts-${{ matrix.ocaml-compiler }}
+    - name: Extract artifacts
+      run: |
+        tar xvf artifacts.tar
+        mv CodeHawk/_build/install/default/bin/parseFile chc/bin/linux/parseFile
+        mv CodeHawk/_build/install/default/bin/canalyzer chc/bin/linux/canalyzer
+    - name: Run kendra test suite
+      run: |
+        PYTHONPATH=$PWD python3 chc/cmdline/chkc kendra test-sets | tee kendra_output.txt
+        diff kendra_output.txt tests/kendra/example_output/test_kendrasets.txt
